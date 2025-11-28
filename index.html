@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조찬희 | 포트폴리오</title>
+    <!-- 폰트: Pretendard (깔끔한 고딕) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        /* --- 1. 기본 설정 (Reset & Base) --- */
+        :root {
+            --primary-color: #4f46e5; /* 세련된 인디고 블루 */
+            --text-color: #333333;
+            --bg-color: #ffffff;
+            --light-bg: #f8f9fa;
+            --border-color: #eeeeee;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
+        
+        /* --- 2. 네비게이션 (Header) --- */
+        html {
+        scroll-behavior: smooth;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary-color); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- 3. 공통 타이틀 스타일 --- */
+        h2.section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            line-height: 1.2;
+        }
+
+        /* --- 4. 자기소개 (Intro) --- */
+        .intro-section {
+            padding-top: 160px;
+            padding-bottom: 100px;
+        }
+        .intro-text h1 { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+        .intro-text p { font-size: 1.2rem; color: #666; margin-bottom: 30px; }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+        .btn:hover { opacity: 0.9; }
+
+        /* --- 5. 이력서 (Resume) --- */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* 날짜:내용 비율 */
+            gap: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        .resume-date { font-weight: 600; color: #888; }
+        .resume-content h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        .resume-content p { color: #555; margin-bottom: 5px; }
+        .print-btn-wrapper { text-align: right; margin-bottom: 20px; }
+        .print-btn {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* --- 6. 기술 스택 (Skills) - 아이콘/태그 형태 --- */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag {
+            background: var(--light-bg);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .skill-tag img { width: 20px; height: 20px; } /* 아이콘 이미지용 */
+
+        /* --- 7. 포트폴리오 (Projects) - 카드형 --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            background: #f1f3f5;
+        }
+        .project-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+        .project-desc { font-size: 0.95rem; color: #666; margin-bottom: 15px; }
+        .project-tags span {
+            font-size: 0.8rem;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            color: #555;
+        }
+
+        /* --- 8. 자기소개서 (Cover Letter) --- */
+        .cover-letter-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+            white-space: pre-line; /* 줄바꿈 적용 */
+        }
+
+        /* --- 9. 연락처 (Contact) --- */
+        .contact-info p { font-size: 1.1rem; margin-bottom: 10px; }
+        
+        /* --- 10. 팝업 (Modal) --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.5); 
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal.show { opacity: 1; }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal.show .modal-content { transform: translateY(0); }
+        .close-btn {
+            position: absolute; top: 20px; right: 25px;
+            color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer;
+        }
+        .modal-btn {
+            display: inline-block; margin-top: 20px;
+            padding: 10px 20px; background: #24292e; color: white;
+            border-radius: 5px; text-decoration: none; font-size: 0.9rem;
+        }
+
+        /* --- 인쇄용 스타일 (Print CSS) --- */
+        @media print {
+            header, .intro-section, #skills, #projects, #contact, .print-btn-wrapper, .btn { 
+                display: none !important; 
+            }
+            section { padding: 0; margin: 20px 0; max-width: 100%; }
+            body { background: white; color: black; }
+            #resume, #cover-letter { display: block !important; page-break-after: always; }
+            h2.section-title { border-left: none; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px;}
+        }
+
+        /* --- 반응형 (Mobile) --- */
+        @media (max-width: 768px) {
+            .intro-text h1 { font-size: 2rem; }
+            .resume-grid { grid-template-columns: 1fr; gap: 5px; }
+            .nav-links { display: none; } /* 모바일 메뉴 생략 (심플함 유지) */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 네비게이션 -->
+    <header>
+        <nav>
+            <div class="logo">PORTFOLIO</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#cover-letter">Letter</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 1. 자기소개 (Home) -->
+    <section id="home" class="intro-section">
+        <div class="intro-text">
+            <h1>안녕하세요,<br>성장하는 개발자<br><span style="color:var(--primary-color)">조찬희</span>입니다.</h1>
+            <p>사용자에게 더 나은 경험을 제공하기 위해 끊임없이 고민하는<br>주니어 프론트엔드/풀스택 개발자입니다.</p>
+            <a href="#projects" class="btn">프로젝트 보기</a>
+        </div>
+    </section>
+
+    <!-- 2. 이력서 (Resume) -->
+    <section id="resume">
+        <div class="print-btn-wrapper">
+            <button class="print-btn" onclick="window.print()">🖨️ 이력서 & 자기소개서 인쇄</button>
+        </div>
+        <h2 class="section-title">RESUME</h2>
+        
+        <div class="resume-grid">
+            <div class="resume-date">2020.03 - 현재</div>
+            <div class="resume-content">
+                <h3>인하공업전문대학 컴퓨터정보과</h3>
+                <p>3학년 재학중 (학점 4.0/4.5)</p>
+            </div>
+        </div>
+        <div class="resume-grid">
+            <div class="resume-date">자격증</div>
+            <div class="resume-content">
+                <p>• 정보처리산업기사 (2023.12)</p>
+                <p>• SQLD (2025.09)</p>
+                <p>• 리눅스마스터2급 (2025.10)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 기술 스택 (Skills) -->
+    <section id="skills">
+        <h2 class="section-title">SKILLS</h2>
+        <div class="skills-container">
+            <div class="skill-tag">☕ Java</div>
+            <div class="skill-tag">🐍 Python</div>
+            <div class="skill-tag">⚡ JavaScript</div>
+            <div class="skill-tag">⚛️ React</div>
+            <div class="skill-tag">🍃 Spring Boot</div>
+            <div class="skill-tag">🔥 Firebase</div>
+            <div class="skill-tag">☁️ AWS</div>
+            <div class="skill-tag">📱 Android</div>
+        </div>
+    </section>
+
+    <!-- 4. 포트폴리오 (Projects) -->
+    <section id="projects">
+        <h2 class="section-title">PROJECTS</h2>
+        <div class="project-grid">
+            <!-- 프로젝트 1 -->
+            <div class="project-card" onclick="openModal('reservation')">
+                <div class="project-title">교내 시설 예약 시스템</div>
+                <div class="project-desc">안드로이드 기반 모바일 예약 앱</div>
+                <div class="project-tags">
+                    <span>Android</span><span>Firebase</span><span>Java</span>
+                </div>
+            </div>
+            <!-- 프로젝트 2 -->
+            <div class="project-card" onclick="openModal('cocktail')">
+                <div class="project-title">칵테일 추천 키오스크</div>
+                <div class="project-desc">취향 기반 칵테일 추천 웹 서비스</div>
+                <div class="project-tags">
+                    <span>React</span><span>Flask</span><span>Python</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 자기소개서 (Cover Letter) -->
+    <section id="cover-letter">
+        <h2 class="section-title">COVER LETTER</h2>
+        <div class="cover-letter-text">
+            <strong>[성장의 즐거움을 아는 개발자]</strong>
+            새로운 기술을 배우고 적용하여 문제를 해결할 때 가장 큰 희열을 느낍니다. 인하공업전문대학에서 컴퓨터공학을 전공하며 웹과 앱 개발의 기초를 다졌고, 특히 캡스톤 프로젝트를 통해 기획부터 배포까지의 전체 사이클을 경험했습니다.
+
+            <strong>[데이터와 사용자 경험의 연결]</strong>
+            도서관 데이터 분석 업무를 통해 데이터가 실제 서비스 개선에 어떻게 기여할 수 있는지 배웠습니다. 단순히 기능만 구현하는 것이 아니라, 사용자가 데이터를 통해 가치를 얻을 수 있는 직관적인 인터페이스를 만드는 데 관심이 많습니다.
+
+            <strong>[준비된 인재]</strong>
+            Spring Boot와 React를 활용한 풀스택 개발 역량을 갖추고 있으며, AWS 클라우드 배포 경험도 보유하고 있습니다. 끊임없는 호기심과 끈기로 귀사의 서비스 발전에 기여하는 개발자가 되겠습니다.
+        </div>
+    </section>
+
+    <!-- 6. 연락처 (Contact) -->
+    <section id="contact">
+        <h2 class="section-title">CONTACT</h2>
+        <div class="contact-info">
+            <p>📧 whcksgml1745@gmail.com</p>
+            <p>📞 010-4127-1745</p>
+            <p>🐈 <a href="https://github.com/yourid" target="_blank" style="text-decoration: underline;">github.com/yourid</a></p>
+        </div>
+    </section>
+
+    <!-- 팝업 모달 (Hidden by default) -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title" style="margin-bottom:15px;">프로젝트 제목</h2>
+            <p id="modal-desc" style="color:#555; line-height:1.6;">프로젝트 설명이 들어갑니다.</p>
+            <a id="modal-link" href="#" target="_blank" class="modal-btn">GitHub 보러가기</a>
+        </div>
+    </div>
+
+    <script>
+        // 프로젝트 데이터
+        const projects = {
+            'reservation': {
+                title: "교내 시설 예약 시스템 📱",
+                desc: "학생들이 스마트폰으로 교내 스터디룸과 체육관을 손쉽게 예약할 수 있는 안드로이드 앱입니다.\n\n- 주요기능: 실시간 예약 현황 확인, 예약 알림, 관리자 승인 시스템\n- 담당역할: Firebase DB 설계 및 안드로이드 UI 구현\n- 성과: 기존 종이 장부 방식 대비 예약 처리 시간 50% 단축",
+                link: "https://github.com/yourid/reservation-app"
+            },
+            'cocktail': {
+                title: "칵테일 추천 키오스크 🍹",
+                desc: "사용자의 기분과 선호하는 맛을 입력받아 최적의 칵테일을 추천해주는 웹 애플리케이션입니다.\n\n- 기술스택: React(프론트), Flask(백엔드), Pandas(데이터 처리)\n- 특징: 데이터 분석을 통한 취향 매칭 알고리즘 구현",
+                link: "https://github.com/yourid/cocktail-kiosk"
+            }
+        };
+
+        const modal = document.getElementById("modal");
+        const mTitle = document.getElementById("modal-title");
+        const mDesc = document.getElementById("modal-desc");
+        const mLink = document.getElementById("modal-link");
+
+        // 모달 열기
+        function openModal(projectId) {
+            const p = projects[projectId];
+            mTitle.innerText = p.title;
+            mDesc.innerText = p.desc;
+            mLink.href = p.link;
+            
+            modal.style.display = "block";
+            setTimeout(() => modal.classList.add("show"), 10); // 애니메이션 트리거
+        }
+
+        // 모달 닫기
+        function closeModal() {
+            modal.classList.remove("show");
+            setTimeout(() => modal.style.display = "none", 300);
+        }
+
+        // 배경 클릭 시 닫기
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // ESC 키로 닫기
+        document.addEventListener('keydown', function(e) {
+            if(e.key === "Escape") closeModal();
+        });
+    </script>
+</body>
+</html>
